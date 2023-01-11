@@ -130,4 +130,5 @@ dmypy.json
 
 #Project folders
 data/
+annotation/logs
 .idea
