@@ -155,7 +155,10 @@ if __name__ == "__main__":
     batch_size = 128
     train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=batch_size, shuffle=True)
+
+    # Training
     #train(epochs=20, train_dataloader=train_loader, val_dataloader=val_loader)
 
+    # Inference
     inference(image_path='../../data/annotated/test/0/img_0_48.png',
               model_path='model_19_0.003', transformation=transform)
