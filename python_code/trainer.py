@@ -1,14 +1,17 @@
-from pytorch_lightning import LightningModule, Trainer, seed_everything, LightningDataModule
-from torch import nn
+from pytorch_lightning import Trainer, LightningDataModule
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.callbacks.progress import TQDMProgressBar
 from pytorch_lightning.loggers import CSVLogger, TensorBoardLogger
-import torchmetrics
 import torchvision
 import torch
 from torch.utils.data import DataLoader
-
 from model import Classifier
+
+weights_folder = 'C:/work/freelance/wood-detection-segmentation/weights'
+train_path = "../../data/annotated/train/"
+val_path = "../../data/annotated/val/"
+test_path = "../../data/annotated/test"
+
 
 class plData(LightningDataModule):
     def __init__(self, train_path, test_path, val_path, batch_size=64):
@@ -46,7 +49,7 @@ if __name__ == "__main__":
         save_top_k=1,
         monitor="val_loss",
         mode="min",
-        dirpath='C:/work/freelance/wood-detection-segmentation/weights',
+        dirpath=weights_folder,
         filename="Classifier_A-{epoch:02d}-{val_loss:.3f}",
 
     )
@@ -60,7 +63,5 @@ if __name__ == "__main__":
     )
 
     model = Classifier()
-    data = plData(train_path="../data/annotated/train/", val_path="../data/annotated/val/",
-                  test_path="../data/annotated/test")
-
+    data = plData(train_path=train_path, val_path=val_path, test_path=test_path)
     trainer.fit(model, data)

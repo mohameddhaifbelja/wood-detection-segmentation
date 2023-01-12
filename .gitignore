@@ -132,3 +132,5 @@ dmypy.json
 data/
 annotation/logs
 .idea
+python_code/code_to_be_converted/runs
+python_code/code_to_be_converted/model_*

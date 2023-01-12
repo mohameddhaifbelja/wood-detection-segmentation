@@ -10,7 +10,7 @@ class Classifier(LightningModule):
 
     def __init__(self, numChannels=1, classes=1):
         super().__init__()
-
+        # Model Architecture
         self.model = nn.Sequential(
             nn.Linear(in_features=2680, out_features=32),
             nn.ReLU(),
@@ -19,6 +19,7 @@ class Classifier(LightningModule):
             nn.Linear(in_features=8, out_features=1),
             nn.Sigmoid()
         )
+
 
         self.train_acc = torchmetrics.Accuracy(task='binary')
         self.val_acc = torchmetrics.Accuracy(task='binary')
